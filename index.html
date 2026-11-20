@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Leandro Stutz | Desenvolvedor Front-End e Web Designer</title>
+  <meta name="description" content="Portfólio de Leandro Stutz da Silva: desenvolvedor front-end e web designer em Osasco – SP. Formado em Análise e Desenvolvimento de Sistemas pela São Judas, estudante de Engenharia da Computação e criador da Stutz Web.">
+  <meta name="theme-color" content="#050507">
+  <meta name="author" content="Leandro Stutz da Silva">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Leandro Stutz | Desenvolvedor Front-End e Web Designer">
+  <meta property="og:description" content="Sites, landing pages e animações com código próprio. Conheça minha trajetória, meus projetos e a Stutz Web.">
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/personagem/cabeca.avif" type="image/avif" fetchpriority="high">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    // Esconde a abertura até as animações assumirem (com plano B, caso algo falhe)
+    document.documentElement.classList.add('js', 'is-loading');
+    setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 3500);
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Leandro Stutz da Silva",
+    "jobTitle": "Desenvolvedor Front-End e Web Designer",
+    "address": { "@type": "PostalAddress", "addressLocality": "Osasco", "addressRegion": "SP", "addressCountry": "BR" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidade São Judas Tadeu" },
+    "knowsAbout": ["HTML", "CSS", "JavaScript", "GSAP", "Three.js", "WordPress", "Figma", "Suporte de TI"],
+    "sameAs": ["https://www.linkedin.com/in/leandro-stutz-959088260", "https://www.instagram.com/stutz_web/"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#sobre">Pular para o conteúdo</a>
+
+  <!-- =====================================================
+       MENU (no celular vira um botão "Menu")
+       ===================================================== -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#inicio">Leandro Stutz</a>
+    <nav class="nav__links" aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#formacao">Formação</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </header>
+
+  <div class="menu" id="menu" inert>
+    <nav class="menu__links" aria-label="Menu">
+      <a href="#sobre">Sobre</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#stutz">Stutz Web</a>
+      <a href="#formacao">Formação</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <p class="menu__foot"><a href="mailto:leandrostutzsilva14@gmail.com">leandrostutzsilva14@gmail.com</a></p>
+  </div>
+
+  <main class="page">
+
+    <!-- =====================================================
+         PAINEL 1 · INÍCIO + FERRAMENTAS + GALERIA + SOBRE
+         ===================================================== -->
+    <div class="panel panel--dark panel--base">
+
+      <!-- ---------- INÍCIO ---------- -->
+      <section class="hero" id="inicio" aria-label="Apresentação">
+        <!-- Luz atrás do personagem: troque as cores em --hero-luz no css/style.css -->
+        <div class="hero__light" aria-hidden="true"></div>
+
+        <!-- Nome gigante atrás do personagem (só no computador; no celular aparece o título de baixo) -->
+        <p class="hero__name" data-fit="fill" data-fit-max="230" data-fit-var="--name-fs" aria-hidden="true"><span class="hero__name-inner fit-inner">OI, SOU LEANDRO</span></p>
+
+        <!-- Personagem: a cabeça vira e os olhos seguem o mouse (js/main.js → setupPersonagem) -->
+        <div class="character" aria-hidden="true">
+          <div class="character__pop">
+            <div class="character__float">
+              <div class="character__turn">
+                <div class="avatar">
+                  <picture>
+                    <source srcset="assets/img/personagem/cabeca.avif" type="image/avif">
+                    <img class="avatar__head" src="assets/img/personagem/cabeca.png" alt="" width="988" height="1094" fetchpriority="high">
+                  </picture>
+                  <span class="eye eye--esq"><img class="eye__iris" src="assets/img/personagem/iris-esq.png" alt="" width="122" height="122"><span class="eye__lid"></span></span>
+                  <span class="eye eye--dir"><img class="eye__iris" src="assets/img/personagem/iris-dir.png" alt="" width="112" height="112"><span class="eye__lid"></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__bottom">
+          <div class="hero__left">
+            <p class="hero__pill">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M12 1.5c.5 4.9 2.6 8.4 9 10.5-6.4 2.1-8.5 5.6-9 10.5-.5-4.9-2.6-8.4-9-10.5 6.4-2.1 8.5-5.6 9-10.5Z"/></svg>
+              Desenvolvedor front-end &amp; web designer
+            </p>
+            <h1 class="hero__title">
+              <span class="sr-only">Oi, eu sou o Leandro Stutz, desenvolvedor front-end e web designer</span>
+              <span class="hero__line" aria-hidden="true"><span>Oi, eu sou</span></span>
+              <span class="hero__line" aria-hidden="true"><span>o Leandro.</span></span>
+            </h1>
+          </div>
+
+          <div class="hero__right">
+            <p class="status"><span class="status__dot" aria-hidden="true"></span>Disponível para estágio e projetos</p>
+            <p class="hero__text">Crio sites rápidos, animados e memoráveis, do layout no Figma ao código no ar.</p>
+            <div class="hero__actions">
+              <a class="btn btn--white" href="#contato"><span>Fale comigo</span></a>
+              <a class="btn-round" href="#projetos" aria-label="Ver projetos">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 5v14m0 0-6-6m6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+            <!-- Redes sociais (aparecem no computador) -->
+            <ul class="hero__social" aria-label="Redes sociais">
+              <li><a class="btn-round btn-round--sm" href="https://www.instagram.com/stutz_web/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/></svg>
+              </a></li>
+              <li><a class="btn-round btn-round--sm" href="https://www.linkedin.com/in/leandro-stutz-959088260" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a></li>
+              <li><a class="btn-round btn-round--sm" href="https://wa.me/5511991914936" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35m-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg>
+              </a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- FERRAMENTAS (faixa de logos) ---------- -->
+      <section class="tools" aria-labelledby="tools-title">
+        <h2 class="sr-only" id="tools-title">Tecnologias e ferramentas que eu uso</h2>
+        <div class="marquee" data-marquee data-speed="38">
+          <ul class="marquee__track">
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/html5.svg" alt="HTML5" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/css.svg" alt="CSS3" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/javascript.svg" alt="JavaScript" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/gsap.svg" alt="GSAP" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/threedotjs.svg" alt="Three.js" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/wordpress.svg" alt="WordPress" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/elementor.svg" alt="Elementor" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/figma.svg" alt="Figma" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/supabase.svg" alt="Supabase" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/mysql.svg" alt="MySQL" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/git.svg" alt="Git" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/github.svg" alt="GitHub" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/python.svg" alt="Python" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/dotnet.svg" alt="C# / .NET" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/vercel.svg" alt="Vercel" width="48" height="48" loading="lazy"></li>
+            <li class="tool"><img src="https://cdn.jsdelivr.net/npm/simple-icons@16.38.0/icons/wix.svg" alt="Wix" width="48" height="48" loading="lazy"></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ---------- GALERIA (duas fileiras que andam com a rolagem) ---------- -->
+      <section class="gallery" aria-label="Prévia de sites que eu desenvolvi">
+        <div class="gallery__row">
+          <figure class="gallery__item"><img src="assets/img/projetos/stutz-a.jpg" alt="Página inicial do site da Stutz Web" width="1200" height="750" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/fabrica-a.webp" alt="Site da academia Fábrica Premium" width="1200" height="600" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/rodarock-a.webp" alt="Landing page do curso Roda Rock" width="1200" height="600" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/icore-a.webp" alt="Site da clínica Icore Fisio" width="1200" height="600" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/luana-a.webp" alt="Site da Clínica Luana Romeiro" width="1200" height="600" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/nutri-a.webp" alt="Site de uma nutricionista" width="1200" height="600" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/estetica-a.jpg" alt="Site de uma clínica de estética avançada" width="1200" height="685" loading="lazy" decoding="async"></figure>
+        </div>
+        <div class="gallery__row">
+          <figure class="gallery__item"><img src="assets/img/projetos/rodarock-destaque.webp" alt="Destaque do site Roda Rock" width="1500" height="700" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/fabrica-c.jpg" alt="Seção de estrutura do site da Fábrica Premium" width="800" height="500" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/stutz-og.jpg" alt="Arte de divulgação da Stutz Web" width="1200" height="630" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/icore-destaque.webp" alt="Destaque do site da Icore Fisio" width="1500" height="700" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/nutri-c.jpg" alt="Seção sobre a nutricionista" width="800" height="500" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/luana-b.jpg" alt="Seção de tratamentos da Clínica Luana Romeiro" width="800" height="500" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__item"><img src="assets/img/projetos/fabrica-b.jpg" alt="Seção de treinos do site da Fábrica Premium" width="800" height="500" loading="lazy" decoding="async"></figure>
+        </div>
+      </section>
+
+      <!-- ---------- SOBRE MIM ---------- -->
+      <section class="about" id="sobre" aria-labelledby="sobre-title">
+        <span class="float float--laptop" data-speed="1.2"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Laptop/3D/laptop_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+        <span class="float float--gem" data-speed="0.8"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Gem%20stone/3D/gem_stone_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+        <span class="float float--heart" data-speed="1.5"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Red%20heart/3D/red_heart_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+        <span class="float float--flower" data-speed="1"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Cherry%20blossom/3D/cherry_blossom_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+
+        <h2 class="big-title" id="sobre-title" data-title data-fit="shrink">SOBRE MIM</h2>
+
+        <p class="about__text" data-words>
+          Sou formado em <strong>Análise e Desenvolvimento de Sistemas</strong> pela São Judas e hoje curso minha segunda graduação, <strong>Engenharia da Computação</strong>, na Anhanguera. Crio sites institucionais, landing pages, e-commerces e aplicações web com HTML, CSS, JavaScript, GSAP e Three.js, do layout no Figma ao código no ar. Também sou o criador da <strong>Stutz Web</strong>, minha marca de sites programados do zero. Bora criar algo incrível juntos?
+        </p>
+
+        <div class="about__actions">
+          <a class="btn btn--grad" href="#contato"><span>Fale comigo</span></a>
+          <a class="btn btn--ghost" href="assets/docs/curriculo-leandro-stutz.pdf" download><span>Baixar currículo</span></a>
+        </div>
+
+        <ul class="stats">
+          <li class="stat"><strong data-count="2">2</strong><span>graduações</span><small>ADS concluída e Eng. da Computação em curso</small></li>
+          <li class="stat"><strong data-count="4">4</strong><span>experiências</span><small>em desenvolvimento, suporte e atendimento</small></li>
+          <li class="stat"><strong data-count="7">7</strong><span>sites no portfólio</span><small>a maioria feita pela Stutz Web</small></li>
+          <li class="stat"><strong data-count="5">5</strong><span>cursos e certificações</span><small>Python, C#, PL-900, Excel e Scrum</small></li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- =====================================================
+         PAINEL 2 · EXPERIÊNCIA (fundo claro)
+         ===================================================== -->
+    <section class="panel panel--light experience" id="experiencia" aria-labelledby="exp-title">
+      <div class="container">
+        <h2 class="big-title big-title--dark" id="exp-title" data-title data-fit="shrink">EXPERIÊNCIA</h2>
+
+        <ol class="exp-list">
+          <li class="exp">
+            <span class="exp__num" aria-hidden="true">01</span>
+            <div class="exp__body">
+              <div class="exp__top">
+                <h3 class="exp__company">NEOSHIFT</h3>
+                <span class="exp__period">2024 – atual</span>
+              </div>
+              <p class="exp__role">Desenvolvedor Web · Freelancer e PJ</p>
+              <p class="exp__desc">Desenvolvo sites institucionais, landing pages, e-commerces e aplicações web para clientes de vários segmentos, do protótipo no Figma até a publicação. Cuido de interfaces responsivas e animadas, com foco em experiência, performance e interatividade, além do atendimento direto, levantamento de requisitos e apresentação das soluções.</p>
+              <ul class="tags" aria-label="Tecnologias">
+                <li>HTML</li><li>CSS</li><li>JavaScript</li><li>GSAP</li><li>Three.js</li><li>WordPress</li><li>Elementor</li><li>Figma</li><li>Photoshop</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="exp">
+            <span class="exp__num" aria-hidden="true">02</span>
+            <div class="exp__body">
+              <div class="exp__top">
+                <h3 class="exp__company">Poupatempo</h3>
+                <span class="exp__period">Dez/2025 – atual</span>
+              </div>
+              <p class="exp__role">Atendente de Serviços e Suporte ao Cidadão</p>
+              <p class="exp__desc">Desde agosto de 2026 cubro o CPD da unidade: cerca de 90 computadores, impressoras, switches, ramais e câmeras IP em 6 setores, com correção de falhas em sistemas e abertura de chamados. No atendimento, ajudo cidadãos com serviços digitais, incluindo DETRAN, numa unidade de alto fluxo.</p>
+              <ul class="tags" aria-label="Competências">
+                <li>Suporte de TI</li><li>Hardware</li><li>Redes</li><li>Chamados</li><li>Atendimento</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="exp">
+            <span class="exp__num" aria-hidden="true">03</span>
+            <div class="exp__body">
+              <div class="exp__top">
+                <h3 class="exp__company">Amazon Brazil Group</h3>
+                <span class="exp__period">Abr/2024 – Dez/2024</span>
+              </div>
+              <p class="exp__role">Desenvolvedor Web · Estágio</p>
+              <p class="exp__desc">Criei um app interno de relatórios de vendas com FlutterFlow e Supabase, além de sites institucionais, e-commerces, áreas de membros e catálogos com ferramentas low-code. Também montei dashboards em Excel e trabalhei com integrações de APIs, em rotina Scrum e Kanban.</p>
+              <ul class="tags" aria-label="Tecnologias">
+                <li>FlutterFlow</li><li>Supabase</li><li>APIs</li><li>Excel</li><li>Figma</li><li>Canva</li><li>Scrum</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="exp">
+            <span class="exp__num" aria-hidden="true">04</span>
+            <div class="exp__body">
+              <div class="exp__top">
+                <h3 class="exp__company">Awner</h3>
+                <span class="exp__period">Ago/2023 – Out/2023</span>
+              </div>
+              <p class="exp__role">Analista de Migração · Estágio</p>
+              <p class="exp__desc">Participei de um projeto de migração corporativa de máquinas e dados para empresas de diferentes portes, com instalações remotas via Cisco VPN e VMware Horizon e suporte a problemas de software, hardware e inventário de equipamentos.</p>
+              <ul class="tags" aria-label="Ferramentas">
+                <li>Cisco VPN</li><li>VMware Horizon</li><li>Suporte técnico</li>
+              </ul>
+            </div>
+          </li>
+          <li class="exp-sobra" aria-hidden="true"></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PAINEL 3 · PROJETOS (cards que se empilham)
+         ===================================================== -->
+    <section class="panel panel--dark projects" id="projetos" aria-labelledby="proj-title">
+      <div class="container">
+        <h2 class="big-title" id="proj-title" data-title data-fit="shrink">PROJETOS</h2>
+        <p class="section-sub">Alguns sites que eu desenvolvi, a maioria pela Stutz Web. Todos estão no ar: é só clicar.</p>
+
+        <div class="pcards">
+          <article class="pcard" style="--i:0">
+            <header class="pcard__head">
+              <span class="pcard__num">01</span>
+              <div class="pcard__meta">
+                <span class="pcard__label">Minha marca</span>
+                <h3 class="pcard__name">Stutz Web</h3>
+                <span class="pcard__niche">Agência de sites e landing pages</span>
+              </div>
+              <a class="pcard__btn" href="https://stutz-web.vercel.app/" target="_blank" rel="noopener">Ver projeto <span aria-hidden="true">↗</span></a>
+            </header>
+            <div class="pcard__media">
+              <figure class="pcard__img pcard__img--main"><img src="assets/img/projetos/stutz-a.jpg" alt="Topo do site da Stutz Web" width="1200" height="750" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/stutz-b.jpg" alt="Seção de serviços do site da Stutz Web" width="800" height="500" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/stutz-c.jpg" alt="Seção de portfólio do site da Stutz Web" width="800" height="500" loading="lazy" decoding="async"></figure>
+            </div>
+          </article>
+
+          <article class="pcard" style="--i:1">
+            <header class="pcard__head">
+              <span class="pcard__num">02</span>
+              <div class="pcard__meta">
+                <span class="pcard__label">Cliente</span>
+                <h3 class="pcard__name">Fábrica Premium</h3>
+                <span class="pcard__niche">Academia de luxo em São Paulo</span>
+              </div>
+              <a class="pcard__btn" href="https://portfolio-dois-indol.vercel.app/" target="_blank" rel="noopener">Ver projeto <span aria-hidden="true">↗</span></a>
+            </header>
+            <div class="pcard__media">
+              <figure class="pcard__img pcard__img--main"><img src="assets/img/projetos/fabrica-a.webp" alt="Topo do site da Fábrica Premium" width="1200" height="600" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/fabrica-b.jpg" alt="Seção de treinos do site da Fábrica Premium" width="800" height="500" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/fabrica-c.jpg" alt="Seção de estrutura do site da Fábrica Premium" width="800" height="500" loading="lazy" decoding="async"></figure>
+            </div>
+          </article>
+
+          <article class="pcard" style="--i:2">
+            <header class="pcard__head">
+              <span class="pcard__num">03</span>
+              <div class="pcard__meta">
+                <span class="pcard__label">Cliente</span>
+                <h3 class="pcard__name">Roda Rock</h3>
+                <span class="pcard__niche">Curso online de rock no violão</span>
+              </div>
+              <a class="pcard__btn" href="https://roda-rock.vercel.app/" target="_blank" rel="noopener">Ver projeto <span aria-hidden="true">↗</span></a>
+            </header>
+            <div class="pcard__media">
+              <figure class="pcard__img pcard__img--main"><img src="assets/img/projetos/rodarock-a.webp" alt="Topo da landing page Roda Rock" width="1200" height="600" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/rodarock-b.jpg" alt="Seção sobre o professor do curso Roda Rock" width="800" height="500" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/rodarock-c.jpg" alt="Depoimentos de alunos na landing page Roda Rock" width="800" height="500" loading="lazy" decoding="async"></figure>
+            </div>
+          </article>
+
+          <article class="pcard" style="--i:3">
+            <header class="pcard__head">
+              <span class="pcard__num">04</span>
+              <div class="pcard__meta">
+                <span class="pcard__label">Cliente</span>
+                <h3 class="pcard__name">Icore Fisio</h3>
+                <span class="pcard__niche">Clínica de fisioterapia</span>
+              </div>
+              <a class="pcard__btn" href="https://icorefisio.com.br/" target="_blank" rel="noopener">Ver projeto <span aria-hidden="true">↗</span></a>
+            </header>
+            <div class="pcard__media">
+              <figure class="pcard__img pcard__img--main"><img src="assets/img/projetos/icore-a.webp" alt="Topo do site da Icore Fisio" width="1200" height="600" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/icore-b.jpg" alt="Seção de atendimento do site da Icore Fisio" width="800" height="500" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/icore-destaque.webp" alt="Destaque do site da Icore Fisio" width="1500" height="700" loading="lazy" decoding="async"></figure>
+            </div>
+          </article>
+
+          <article class="pcard" style="--i:4">
+            <header class="pcard__head">
+              <span class="pcard__num">05</span>
+              <div class="pcard__meta">
+                <span class="pcard__label">Cliente</span>
+                <h3 class="pcard__name">Clínica Luana Romeiro</h3>
+                <span class="pcard__niche">Harmonização orofacial</span>
+              </div>
+              <a class="pcard__btn" href="https://clinicaluanaromeiro.com.br/" target="_blank" rel="noopener">Ver projeto <span aria-hidden="true">↗</span></a>
+            </header>
+            <div class="pcard__media">
+              <figure class="pcard__img pcard__img--main"><img src="assets/img/projetos/luana-a.webp" alt="Topo do site da Clínica Luana Romeiro" width="1200" height="600" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/luana-b.jpg" alt="Seção de tratamentos da Clínica Luana Romeiro" width="800" height="500" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/luana-c.jpg" alt="Seção sobre a especialista da Clínica Luana Romeiro" width="800" height="500" loading="lazy" decoding="async"></figure>
+            </div>
+          </article>
+
+          <article class="pcard" style="--i:5">
+            <header class="pcard__head">
+              <span class="pcard__num">06</span>
+              <div class="pcard__meta">
+                <span class="pcard__label">Cliente</span>
+                <h3 class="pcard__name">Nutricionista</h3>
+                <span class="pcard__niche">Consultório de nutrição</span>
+              </div>
+              <a class="pcard__btn" href="https://nutricionista-beige-iota.vercel.app/" target="_blank" rel="noopener">Ver projeto <span aria-hidden="true">↗</span></a>
+            </header>
+            <div class="pcard__media">
+              <figure class="pcard__img pcard__img--main"><img src="assets/img/projetos/nutri-a.webp" alt="Topo do site da nutricionista" width="1200" height="600" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/nutri-b.jpg" alt="Seção de acompanhamento do site da nutricionista" width="800" height="500" loading="lazy" decoding="async"></figure>
+              <figure class="pcard__img"><img src="assets/img/projetos/nutri-c.jpg" alt="Seção sobre a nutricionista" width="800" height="500" loading="lazy" decoding="async"></figure>
+            </div>
+          </article>
+          <div class="pcards__fim" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PAINEL 4 · STUTZ WEB (minha marca)
+         ===================================================== -->
+    <section class="panel panel--light stutz" id="stutz" aria-labelledby="stutz-title">
+      <div class="container stutz__grid">
+        <div class="stutz__copy">
+          <p class="kicker">Minha marca</p>
+          <h2 class="big-title big-title--dark big-title--left" id="stutz-title" data-title data-fit="shrink">STUTZ WEB</h2>
+          <p class="stutz__tagline">Sites e landing pages que viram <span class="txt-blue">cliente.</span></p>
+          <p class="stutz__text">A Stutz Web é a minha marca de criação de sites. Por lá eu desenvolvo sites e landing pages programados do zero, com código próprio, carregamento rápido e design pensado para transformar visita em contato. E o atendimento é direto com quem desenvolve: eu.</p>
+          <div class="stutz__actions">
+            <a class="btn btn--blue" href="https://stutz-web.vercel.app/" target="_blank" rel="noopener"><span>Conhecer a Stutz</span> <span aria-hidden="true">↗</span></a>
+            <a class="btn btn--line" href="https://www.instagram.com/stutz_web/" target="_blank" rel="noopener"><span>@stutz_web</span></a>
+          </div>
+        </div>
+
+        <div class="stutz__visual">
+          <span class="float float--sparkles" data-speed="1.4"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Sparkles/3D/sparkles_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+          <span class="float float--rocket" data-speed="0.9"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Rocket/3D/rocket_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+          <div class="browser">
+            <div class="browser__bar" aria-hidden="true">
+              <span class="browser__dots"><i></i><i></i><i></i></span>
+              <span class="browser__url">
+                <svg viewBox="0 0 24 24" width="12" height="12"><path d="M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                stutz-web.vercel.app
+              </span>
+            </div>
+            <div class="browser__screen">
+              <video src="assets/video/stutz-site.mp4" poster="assets/video/stutz-site-poster.jpg" width="1280" height="696" autoplay muted loop playsinline preload="metadata" aria-label="Vídeo navegando pelo site da Stutz Web"></video>
+            </div>
+          </div>
+          <div class="stutz__logo"><img src="assets/img/logo-stutz.webp" alt="Logo da Stutz" width="204" height="60" loading="lazy"></div>
+        </div>
+      </div>
+
+      <ul class="container services">
+        <li class="service">
+          <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Rocket/3D/rocket_3d.png" alt="" width="256" height="256" loading="lazy">
+          <h3>Landing pages</h3>
+          <p>Página única focada em conversão, para campanhas, lançamentos e captação de clientes.</p>
+        </li>
+        <li class="service">
+          <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Office%20building/3D/office_building_3d.png" alt="" width="256" height="256" loading="lazy">
+          <h3>Sites institucionais</h3>
+          <p>Site completo para apresentar a empresa e os serviços, passando seriedade para quem chega.</p>
+        </li>
+        <li class="service">
+          <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Artist%20palette/3D/artist_palette_3d.png" alt="" width="256" height="256" loading="lazy">
+          <h3>Design sob medida</h3>
+          <p>Interface criada no Figma com foco em usabilidade, conversão e na identidade da marca.</p>
+        </li>
+        <li class="service">
+          <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Mobile%20phone/3D/mobile_phone_3d.png" alt="" width="256" height="256" loading="lazy">
+          <h3>Rápido e mobile first</h3>
+          <p>Código limpo e leve, que abre rápido e fica perfeito do celular ao computador.</p>
+        </li>
+        <li class="service">
+          <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Magnifying%20glass%20tilted%20left/3D/magnifying_glass_tilted_left_3d.png" alt="" width="256" height="256" loading="lazy">
+          <h3>SEO técnico</h3>
+          <p>Estrutura organizada para o Google entender o site e o cliente certo te encontrar.</p>
+        </li>
+        <li class="service">
+          <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Link/3D/link_3d.png" alt="" width="256" height="256" loading="lazy">
+          <h3>Integrações</h3>
+          <p>WhatsApp, formulários, CRM, Pixel, Google Analytics e Tag Manager desde o primeiro dia.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- =====================================================
+         PAINEL 5 · FORMAÇÃO E HABILIDADES
+         ===================================================== -->
+    <section class="panel panel--dark education" id="formacao" aria-labelledby="edu-title">
+      <span class="float float--wow" data-speed="1.3"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Face%20with%20open%20mouth/3D/face_with_open_mouth_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+      <span class="float float--star" data-speed="0.8"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Glowing%20star/3D/glowing_star_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+
+      <div class="container education__head">
+        <h2 class="education__title" id="edu-title" data-words>Formação e<br>certificações</h2>
+        <span class="float float--cap" data-speed="0.6"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Smiling%20face%20with%20heart-eyes/3D/smiling_face_with_heart-eyes_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+      </div>
+
+      <div class="education__rows">
+        <div class="marquee marquee--cards" data-marquee data-speed="55" data-pause>
+          <ul class="marquee__track">
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Graduation%20cap/3D/graduation_cap_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p>Bacharelado em <strong>Engenharia da Computação</strong>, minha segunda graduação, para ir mais fundo em hardware, sistemas e infraestrutura.</p>
+                <span class="ecard__who">Universidade Anhanguera · 2026 – 2030 (em curso)</span>
+              </div>
+            </li>
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Books/3D/books_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p>Tecnólogo em <strong>Análise e Desenvolvimento de Sistemas</strong>, minha primeira graduação e a base de tudo que faço com código.</p>
+                <span class="ecard__who">Universidade São Judas Tadeu · concluído em 06/2025</span>
+              </div>
+            </li>
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Desktop%20computer/3D/desktop_computer_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p><strong>Técnico em Informática</strong>, onde comecei com programação, hardware e redes.</p>
+                <span class="ecard__who">CED – Centro Educacional Desafio · concluído em 12/2022</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="marquee marquee--cards" data-marquee data-speed="65" data-dir="1" data-pause>
+          <ul class="marquee__track">
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Snake/3D/snake_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p>Curso de <strong>Programação em Python</strong>.</p>
+                <span class="ecard__who">SENAI · 80 horas</span>
+              </div>
+            </li>
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Gear/3D/gear_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p>Curso de <strong>Programação em C# com .NET</strong>.</p>
+                <span class="ecard__who">DIO · 80 horas</span>
+              </div>
+            </li>
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/High%20voltage/3D/high_voltage_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p><strong>Microsoft Power Platform Fundamentals (PL-900)</strong>.</p>
+                <span class="ecard__who">SENAI · 40 horas</span>
+              </div>
+            </li>
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Bar%20chart/3D/bar_chart_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p>Curso de <strong>Excel Avançado</strong>.</p>
+                <span class="ecard__who">SENAI · 40 horas</span>
+              </div>
+            </li>
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Clipboard/3D/clipboard_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p><strong>Certificação Scrum</strong>, para trabalhar com métodos ágeis.</p>
+                <span class="ecard__who">CertiProf · 2023</span>
+              </div>
+            </li>
+            <li class="ecard">
+              <span class="ecard__icon"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Globe%20showing%20americas/3D/globe_showing_americas_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+              <div class="ecard__text">
+                <p><strong>Inglês</strong> em nível básico, com curso em andamento.</p>
+                <span class="ecard__who">Idiomas</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container skills">
+        <h3 class="skills__title">Habilidades técnicas</h3>
+        <ul class="skills__grid">
+          <li class="skill"><h4>Front-end</h4><ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul></li>
+          <li class="skill"><h4>Animação e 3D</h4><ul><li>GSAP</li><li>Three.js</li></ul></li>
+          <li class="skill"><h4>Sites e CMS</h4><ul><li>WordPress</li><li>Elementor</li><li>Wix</li></ul></li>
+          <li class="skill"><h4>Low-code</h4><ul><li>FlutterFlow</li><li>Power Platform</li></ul></li>
+          <li class="skill"><h4>Dados</h4><ul><li>Supabase</li><li>MySQL</li><li>Power BI</li><li>Excel avançado</li></ul></li>
+          <li class="skill"><h4>Design e UI/UX</h4><ul><li>Figma</li><li>Photoshop</li><li>Canva</li></ul></li>
+          <li class="skill"><h4>Suporte e infraestrutura</h4><ul><li>Windows</li><li>Hardware</li><li>Redes</li><li>Cisco VPN</li><li>VMware Horizon</li></ul></li>
+          <li class="skill"><h4>Ferramentas e métodos</h4><ul><li>Git</li><li>GitHub</li><li>Scrum</li><li>Kanban</li></ul></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PAINEL 6 · CONTATO (fundo claro)
+         ===================================================== -->
+    <section class="panel panel--light contact" id="contato" aria-labelledby="contato-title">
+      <span class="float float--bolt" data-speed="1.2"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/High%20voltage/3D/high_voltage_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+      <span class="float float--ball" data-speed="0.8"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@1ffb34c752ecf5d402f04cfb4b392c77f57c54bc/assets/Crystal%20ball/3D/crystal_ball_3d.png" alt="" width="256" height="256" loading="lazy"></span>
+
+      <div class="container contact__grid">
+        <div class="contact__copy">
+          <h2 class="big-title big-title--dark big-title--left contact__title" id="contato-title" data-title data-fit="shrink">VAMOS<br>CONVERSAR?</h2>
+          <p class="contact__text">Tem um projeto, uma vaga de estágio ou quer só trocar uma ideia? Me manda uma mensagem que eu respondo rapidinho.</p>
+          <a class="contact__mail" href="mailto:leandrostutzsilva14@gmail.com">leandrostutzsilva14@gmail.com</a>
+          <ul class="contact__links">
+            <li><a href="https://www.linkedin.com/in/leandro-stutz-959088260" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://wa.me/5511991914936" target="_blank" rel="noopener">WhatsApp <span aria-hidden="true">↗</span></a></li>
+            <li><a href="assets/docs/curriculo-leandro-stutz.pdf" download>Currículo (PDF) <span aria-hidden="true">↓</span></a></li>
+          </ul>
+        </div>
+
+        <form class="form" id="form-contato" novalidate>
+          <div class="field">
+            <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder=" " required>
+            <label for="f-nome">Nome completo*</label>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <input id="f-email" name="email" type="email" autocomplete="email" placeholder=" " required>
+              <label for="f-email">E-mail*</label>
+            </div>
+            <div class="field">
+              <input id="f-tel" name="telefone" type="tel" autocomplete="tel" placeholder=" ">
+              <label for="f-tel">Telefone</label>
+            </div>
+          </div>
+          <div class="field">
+            <textarea id="f-msg" name="mensagem" rows="3" placeholder=" " required></textarea>
+            <label for="f-msg">Mensagem*</label>
+          </div>
+          <button class="btn btn--send" type="submit"><span>Enviar</span></button>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PAINEL 7 · RODAPÉ
+         ===================================================== -->
+    <footer class="panel panel--dark footer">
+      <div class="container footer__top">
+        <p class="footer__name" aria-hidden="true"><span>LEANDRO</span><span>STUTZ</span></p>
+        <div class="footer__cols">
+          <div>
+            <h3>Redes</h3>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/leandro-stutz-959088260" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://www.instagram.com/stutz_web/" target="_blank" rel="noopener">Instagram da Stutz</a></li>
+              <li><a href="https://wa.me/5511991914936" target="_blank" rel="noopener">WhatsApp</a></li>
+              <li><a href="https://stutz-web.vercel.app/" target="_blank" rel="noopener">Site da Stutz Web</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contato</h3>
+            <ul>
+              <li><a href="mailto:leandrostutzsilva14@gmail.com">leandrostutzsilva14@gmail.com</a></li>
+              <li><a href="tel:+5511991914936">(11) 99191-4936</a></li>
+              <li>Osasco – SP, Brasil</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="shapes" aria-hidden="true">
+        <span class="shape"><svg viewBox="0 0 100 100"><rect x="31" y="2" width="38" height="96" rx="19" transform="rotate(45 50 50)" fill="#9b7bff"/><rect x="31" y="2" width="38" height="96" rx="19" transform="rotate(-45 50 50)" fill="#9b7bff"/></svg></span>
+        <span class="shape"><svg viewBox="0 0 100 100" fill="#b5e34a"><circle cx="26" cy="26" r="23"/><circle cx="74" cy="26" r="23"/><circle cx="26" cy="74" r="23"/><circle cx="74" cy="74" r="23"/></svg></span>
+        <span class="shape"><svg viewBox="0 0 100 100" fill="#f1f1f4"><path d="M50 4 A46 46 0 1 0 96 50 L70 50 A20 20 0 1 1 50 30 Z"/></svg></span>
+        <span class="shape"><svg viewBox="0 0 100 100" fill="#8a5cf6"><circle cx="50" cy="50" r="46"/></svg></span>
+        <span class="shape"><svg viewBox="0 0 100 100" fill="#f1f1f4"><path d="M6 6 H94 V30 L44 72 H94 V94 H6 V70 L56 28 H6 Z"/></svg></span>
+        <span class="shape"><svg viewBox="0 0 100 100" fill="#ff9f43"><path d="M4 4 A46 46 0 0 1 4 96 Z"/><path d="M96 4 A46 46 0 0 0 96 96 Z"/></svg></span>
+        <span class="shape"><svg viewBox="0 0 100 100" fill="#f1f1f4"><path d="M50 4 L94 46 H6 Z"/><path d="M6 54 H94 L50 96 Z"/></svg></span>
+        <span class="shape"><svg viewBox="0 0 100 100" fill="#ff3fbf"><path fill-rule="evenodd" d="M50 4a46 46 0 1 1 0 92a46 46 0 1 1 0-92Zm0 26a20 20 0 1 0 0 40a20 20 0 1 0 0-40Z"/></svg></span>
+      </div>
+
+      <div class="container footer__bottom">
+        <p>© <span data-year>2026</span> Leandro Stutz da Silva</p>
+        <p>Feito por mim com HTML, CSS, JavaScript e GSAP</p>
+        <a href="#inicio">Voltar ao topo <span aria-hidden="true">↑</span></a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Bibliotecas: Lenis (rolagem suave) + GSAP/ScrollTrigger (animações) -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
