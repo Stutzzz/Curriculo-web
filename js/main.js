@@ -19,6 +19,8 @@
   const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const hasGSAP = !!(window.gsap && window.ScrollTrigger);
   const isMobile = () => window.innerWidth < 800;
+  // Modo leve: no celular as animações pesadas (blur, escala/escurecer painéis, parallax) ficam de fora
+  const lite = window.matchMedia('(max-width: 799px)').matches;
 
   const yearEl = $('[data-year]');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -372,6 +374,7 @@
     if (!expRows.length || !expList) return;
     const navH = parseFloat(getComputedStyle(root).getPropertyValue('--nav-h')) || 64;
     let topo = navH + 10;
+    if (lite) expRows.forEach((r) => { r.style.minHeight = ''; });
     const itens = expRows.map((row) => {
       const num = $('.exp__num', row);
       const top = $('.exp__top', row);
@@ -380,10 +383,16 @@
       const D = Math.round(top.offsetTop + top.offsetHeight + (ladoALado ? 18 : 14));
       const escala = ladoALado ? Math.min(1, Math.max(0.3, (D - num.offsetTop - 8) / num.offsetHeight)) : 1;
       row.style.setProperty('--escala-min', escala.toFixed(3));
+      row.style.setProperty('--stack-top', `${topo}px`);
       const item = { row, D, H: row.offsetHeight, T: row.offsetTop, S: topo };
       topo += D;
       return item;
     });
+    // Celular (sticky nativo): todos os itens terminam na mesma linha, para subirem juntos no fim
+    if (lite) {
+      const K = Math.max(...itens.map((p) => p.S + p.H));
+      itens.forEach((p) => { p.row.style.minHeight = `${Math.ceil(K - p.S)}px`; });
+    }
     // O fundo final cobre o que sobra de cada item, para a pilha fechar inteira
     const cobrir = Math.max(0, ...itens.map((p) => p.S + p.H - topo));
     // e precisa ir até o fim da tela, para a próxima seção só chegar com a pilha já fechada
@@ -394,6 +403,16 @@
   // Cada item "gruda" (via transform) embaixo das faixas de cima; depois de fechada, a pilha sobe inteira
   function aplicarPilha() {
     if (!pilha) return;
+    if (lite) {
+      const { itens } = pilha;
+      itens.forEach((p, i) => {
+        const a = p.row.getBoundingClientRect().top;
+        const b = (i < itens.length - 1 ? itens[i + 1].row : expSobra).getBoundingClientRect().top;
+        const v = Math.min(1, Math.max(0, (b - a - p.D) / Math.max(1, p.H - p.D)));
+        p.row.style.setProperty('--visivel', v.toFixed(3));
+      });
+      return;
+    }
     const Lreal = expList.getBoundingClientRect().top;
     const L = Math.max(Lreal, pilha.fechada);
     const { itens } = pilha;
@@ -430,7 +449,7 @@
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
 
-  if (!reduceMotion && window.Lenis) {
+  if (!reduceMotion && window.Lenis && canHover && !lite) {
     lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
@@ -537,12 +556,14 @@
     start: 0,
     end: 'max',
     onUpdate: (self) => {
-      const ts = 1 + Math.min(Math.abs(self.getVelocity()) / 350, 5);
-      marquees.forEach((q) => { if (!q.hover) gsap.to(q.tween, { timeScale: ts, duration: 0.25, overwrite: true }); });
-      clearTimeout(slowDown);
-      slowDown = setTimeout(() => {
-        marquees.forEach((q) => { if (!q.hover) gsap.to(q.tween, { timeScale: 1, duration: 1.2, ease: 'power2.out', overwrite: true }); });
-      }, 140);
+      if (!lite) {
+        const ts = 1 + Math.min(Math.abs(self.getVelocity()) / 350, 5);
+        marquees.forEach((q) => { if (!q.hover) gsap.to(q.tween, { timeScale: ts, duration: 0.25, overwrite: true }); });
+        clearTimeout(slowDown);
+        slowDown = setTimeout(() => {
+          marquees.forEach((q) => { if (!q.hover) gsap.to(q.tween, { timeScale: 1, duration: 1.2, ease: 'power2.out', overwrite: true }); });
+        }, 140);
+      }
       if (!menuOpen) nav.classList.toggle('is-hidden', self.direction === 1 && self.scroll() > 160);
     },
   });
@@ -566,6 +587,14 @@
      5. Títulos: contorno → preenchido, letra por letra
      ========================================================= */
   titles.forEach(({ el, chars, ghost }) => {
+    if (lite) {
+      gsap.fromTo(chars, { opacity: 0, yPercent: 45 }, {
+        opacity: 1, yPercent: 0, duration: 0.9, stagger: 0.035, ease: 'expo.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+      });
+      gsap.to(ghost, { opacity: 0, duration: 0.5, delay: 0.5, scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      return;
+    }
     gsap.fromTo(chars,
       { opacity: 0, yPercent: 40, scale: 1.3, filter: 'blur(14px)' },
       {
@@ -577,6 +606,10 @@
 
   // Parágrafos: palavras acendem conforme a rolagem
   wordGroups.forEach(({ el, words }) => {
+    if (lite) {
+      gsap.fromTo(words, { opacity: 0.13 }, { opacity: 1, duration: 0.5, stagger: 0.025, ease: 'none', scrollTrigger: { trigger: el, start: 'top 82%', once: true } });
+      return;
+    }
     gsap.fromTo(words, { opacity: 0.13 }, {
       opacity: 1, ease: 'none', stagger: 0.12,
       scrollTrigger: { trigger: el, start: 'top 86%', end: 'bottom 62%', scrub: true },
@@ -598,7 +631,7 @@
       scale: 0, rotation: gsap.utils.random(-60, 60), opacity: 0, duration: 1.4, ease: 'back.out(1.7)',
       scrollTrigger: { trigger: f, start: 'top 94%', toggleActions: 'play none none reverse' },
     });
-    gsap.fromTo(f, { yPercent: 60 * speed }, {
+    if (!lite) gsap.fromTo(f, { yPercent: 60 * speed }, {
       yPercent: -60 * speed, ease: 'none',
       scrollTrigger: { trigger: area, start: 'top bottom', end: 'bottom top', scrub: true },
     });
@@ -631,7 +664,7 @@
      ========================================================= */
   panels.forEach((p, i) => {
     const next = panels[i + 1];
-    if (!next) return;
+    if (!next || lite) return;
     const last = i === panels.length - 2; // contato → rodapé
     gsap.fromTo(p, { '--cover': 0, scale: 1 }, {
       '--cover': last ? 0.55 : 1,
@@ -645,6 +678,7 @@
   const cards = $$('.pcard');
   const navH = () => parseFloat(getComputedStyle(root).getPropertyValue('--nav-h')) || 64;
   cards.forEach((card, i) => {
+    if (lite) return;
     gsap.fromTo($$('img', card), { scale: 1.16 }, {
       scale: 1, ease: 'none',
       scrollTrigger: { trigger: card, start: 'top bottom', end: 'top 30%', scrub: true },

@@ -581,6 +581,7 @@ html.lenis, html.lenis body { height: auto; }
 .exp { position: relative; border-top: 1px solid var(--line-dark); will-change: transform; }
 .exp:nth-child(1) { z-index: 1; } .exp:nth-child(2) { z-index: 2; } .exp:nth-child(3) { z-index: 3; } .exp:nth-child(4) { z-index: 4; } .exp:nth-child(5) { z-index: 5; } .exp:nth-child(6) { z-index: 6; }
 .measuring .exp { transform: none !important; }
+.measuring .exp { position: relative !important; top: auto !important; }
 /* Fundo que sobe por último e fecha o último item; altura vem do JS */
 .exp-sobra { position: relative; z-index: 20; min-height: var(--sobra, 0px); background: var(--light); border-top: 1px solid var(--line-dark); }
 .exp__num {
@@ -958,6 +959,14 @@ html.lenis, html.lenis body { height: auto; }
   :root { --nav-h: 58px; }
 
   .nav__links { display: none; }
+
+  /* Modo leve: menos coisas para o celular desenhar a cada frame */
+  .hero::before { display: none; }
+  .hero__pill { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .float img { filter: none; }
+  .avatar__head { filter: none; }
+  .exp { position: sticky; top: var(--stack-top, var(--nav-h)); will-change: auto; }
+  .gallery__item, .pcard__img { transform: translateZ(0); }
   .nav__toggle { display: inline-block; justify-self: end; }
 
   /* Início */
